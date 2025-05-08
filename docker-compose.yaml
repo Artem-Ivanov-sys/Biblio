@@ -1,8 +1,3 @@
-version: '3.5'
-
-networks:
-  avi-levinson:
-
 volumes:
   mongodb-data:
 
@@ -19,62 +14,3 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-
-  zumper:
-    networks:
-      avi-levinson:
-    build: ../../
-    image: dataox/avi-levinson-data-scraping:latest
-    restart: on-failure
-    depends_on:
-      - mongo
-    command: python3 zumper_parser/async_parser.py
-    environment:
-      MONGO_CONNECTION: ${MONGO_URL}
-
-  kijiji:
-    networks:
-      avi-levinson:
-    build: ../../
-    image: dataox/avi-levinson-data-scraping:latest
-    restart: on-failure
-    depends_on:
-      - mongo
-    command: python3 kijiji_parser/async_parser.py
-    environment:
-      MONGO_CONNECTION: ${MONGO_URL}
-
-#  house_sigma:
-#    networks:
-#      avi-levinson:
-#    build: ../../
-#    image: dataox/avi-levinson-data-scraping:latest
-#    restart: on-failure
-#    depends_on:
-#      - mongo
-#    command: python3 housesigma_parser/parser.py
-#    environment:
-#      MONGO_CONNECTION: ${MONGO_URL}
-
-  condos:
-    networks:
-      avi-levinson:
-    build: ../../
-    image: dataox/avi-levinson-data-scraping:latest
-    restart: on-failure
-    depends_on:
-      - mongo
-    command: python3 condos_parser/async_parser.py
-    environment:
-      MONGO_CONNECTION: ${MONGO_URL}
-
-  integration_condos:
-    networks:
-      avi-levinson:
-    build: ../../
-    image: dataox/avi-levinson-data-scraping:latest
-    depends_on:
-      - mongo
-    command: python3 condos_parser/condos_to_zoho_updater.py
-    environment:
-      MONGO_CONNECTION: ${MONGO_URL}
