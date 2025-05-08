@@ -6,5 +6,5 @@ books_router = SimpleRouter()
 books_router.register("books", BooksList, basename="books")
 
 urlpatterns = [
-    path('api/v1/biblio/', include(books_router.urls)),
+    path('biblio/', include(books_router.urls)),
 ]

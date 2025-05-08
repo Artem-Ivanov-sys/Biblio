@@ -25,6 +25,10 @@ function App() {
           path="/login"
           element={<Login />}
         />
+        <Route
+          path="/logout"
+          element={<Logout />}
+        />
       </Routes>
     </BrowserRouter>
   )
