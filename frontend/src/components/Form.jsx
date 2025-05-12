@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/Form.css"
+import "../styles/LoginForm.css"
 
 function Form({route, method}) {
     const [username, setUsername] = useState("")
@@ -32,10 +32,12 @@ function Form({route, method}) {
     }
 
     return <form onSubmit={handleSubmit} className="login-form">
-        <h1>{method === "login" ? "Login" : "---"}</h1>
+        <h2>{method === "login" ? "Вхід" : "---"}</h2>
+        <p>Логін:</p>
         <input className="form-input" type="text" value={username} onChange={e=>setUsername(e.target.value)} placeholder="username" />
+        <p>Пароль:</p>
         <input className="form-input" type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="password" />
-        <input className="form-button submit" type="submit" value={method === "login" ? "Login" : "---"} />
+        <input className="form-button submit" type="submit" value={method === "login" ? "Вхід" : "---"} />
     </form>
 }
 

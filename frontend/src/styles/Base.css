@@ -1,0 +1,18 @@
+body {
+    --base-color: #5577FF;
+    --bg-color: #DFDFDF;
+    --header-bg: #bdbdbd;
+    
+    background-color: var(--bg-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-size: 1.5em;
+}

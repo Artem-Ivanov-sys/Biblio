@@ -1,0 +1,45 @@
+.login-form {
+    width: 466px;
+    border-radius: 30px;
+    background-color: white;
+    padding: 40px;
+    box-shadow: 0px 0px 20px #444;
+    margin: auto;
+    margin-top: 30vh;
+}
+
+.login-form > *:not(:last-child, p) {
+    margin-bottom: 20px;
+} .login-form > p {
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.form-input, .form-button {
+    display: block;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    font-size: 1em;
+    padding: 7px 12px;
+}
+
+.form-button:hover {
+    cursor: pointer;
+}
+
+.form-input {
+    background-color: #E8E8E8;
+}
+
+.submit {
+    border: none;
+    background-color: var(--base-color);
+    color: white;
+    margin-top: 20px;
+}
+
+.login-form h2 {
+    text-align: center;
+}

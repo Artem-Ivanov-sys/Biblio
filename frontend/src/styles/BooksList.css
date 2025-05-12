@@ -1,0 +1,11 @@
+.books-list {
+    padding: 50px 10%;
+}
+
+.books-list > a {
+    display: block;
+}
+
+.books-list > a:not(:last-child) {
+    margin-bottom: 20px;
+}
