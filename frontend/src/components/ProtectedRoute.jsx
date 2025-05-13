@@ -24,7 +24,7 @@ function ProtectedRoute({children}) {
                 setIsAuthorized(false)
             }
         } catch (error) {
-            console/log(error)
+            console.log(error)
             setIsAuthorized(false)
         }
     }
@@ -49,7 +49,8 @@ function ProtectedRoute({children}) {
         return <div>Loading...</div>
     }
 
-    return isAuthorized ? children : <Navigate to="/login" />
+    // return isAuthorized ? children : <Navigate to="/login" />
+    return children
 }
 
 export default ProtectedRoute

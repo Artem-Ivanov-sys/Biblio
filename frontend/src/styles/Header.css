@@ -7,3 +7,38 @@ header {
     padding: 0 10%;
     background-color: var(--header-bg);
 }
+
+nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.main-menu {
+    display: flex;
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.main-menu > li {
+    width: 150px;
+    background-color: var(--base-color);
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 10px;
+}
+
+li:hover {
+    cursor: pointer;
+    background-color: var(--base-color-light);
+}
+
+.main-menu a {
+    color: white;
+    text-decoration: none;
+}

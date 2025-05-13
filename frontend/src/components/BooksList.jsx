@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react"
-import api from "../api"
-import "../styles/Base.css"
-import Header from "../components/Header"
-import BookItem from "../components/BookItem"
-import "../styles/BooksList.css"
-import Footer from "../components/Footer"
 
-function Home() {
+function BooksList() {
     const [books, setBooks] = useState({})
 
     useEffect(() => {
@@ -20,13 +14,7 @@ function Home() {
             .catch(error => alert(error))
     }
 
-    return <div className="main">
-        <Header />
-        <div className="books-list">
+    return <div className="books-list">
             {Array.from(books).map(book => <BookItem key={book.id} book={book} />)}
         </div>
-        <Footer />
-    </div>
 }
-
-export default Home

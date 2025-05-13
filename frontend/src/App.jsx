@@ -1,36 +1,38 @@
-import React from "react"
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
+import { Navigate, createBrowserRouter, RouterProvider } from "react-router-dom"
 import Login from "./pages/Login"
 import Home from "./pages/Main"
 import ProtectedRoute from "./components/ProtectedRoute"
 
 function Logout() {
   localStorage.clear()
-  return <Navigate to="/login" />
+  return <Navigate to="/" />
 }
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    children: [
+      {
+
+      }
+    ]
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/logout",
+    element: <Logout />
+  }
+])
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route 
-          path="/login"
-          element={<Login />}
-        />
-        <Route
-          path="/logout"
-          element={<Logout />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <ProtectedRoute>
+      <RouterProvider router={router} />
+    </ProtectedRoute>
   )
 }
 

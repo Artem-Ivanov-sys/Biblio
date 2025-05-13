@@ -1,7 +1,9 @@
 body {
     --base-color: #5577FF;
+    --base-color-light: #6a88ff;
     --bg-color: #DFDFDF;
     --header-bg: #bdbdbd;
+    --main-dark: #222222;
     
     background-color: var(--bg-color);
 }
@@ -11,6 +13,11 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+    position: relative;
+    padding-bottom: 70px;
 }
 
 h2 {
