@@ -5,7 +5,7 @@ header {
     height: 70px;
     align-items: center;
     padding: 0 10%;
-    background-color: var(--header-bg);
+    background-color: var(--base-color);
 }
 
 nav {
@@ -20,6 +20,7 @@ nav {
     height: 100%;
     display: flex;
     align-items: center;
+    background-color: var(--base-color-light);
 }
 
 .main-menu > li {
@@ -30,10 +31,15 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-right: 10px;
+    margin-right: 3px;
+    transition: .5s;
 }
 
-li:hover {
+.main-menu > li:first-child {
+    margin-left: 3px;
+}
+
+.main-menu li:hover {
     cursor: pointer;
     background-color: var(--base-color-light);
 }
@@ -41,4 +47,10 @@ li:hover {
 .main-menu a {
     color: white;
     text-decoration: none;
+}
+
+.logo {
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    font-weight: bold;
 }

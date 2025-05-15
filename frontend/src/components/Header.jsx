@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import api from "../api";
 import { ACCESS_TOKEN } from "../constants";
 import { Link } from "react-router-dom";
 import "../styles/Header.css"
+import useAuth from "../auth/useAuth";
 
 function MenuItem({children}) {
     return <li>
@@ -12,42 +13,37 @@ function MenuItem({children}) {
 
 function Header() {
     const [user, setUser] = useState("")
-    const [isAuthenticated, setIsAuthenticated] = useState(null)
+    const isAuthenticated = useAuth()
 
-    useEffect(() => getUser(), [])
+    useEffect(() => {
+        getUser()
+    }, [])
 
     const getUser = () => {
-        if (localStorage.getItem(ACCESS_TOKEN)) {
-            api
-                .get("/api/v1/me/", {headers: {"Authorization": `Bearer ${ACCESS_TOKEN}`}})
-                .then(res => {
-                    setUser(`${res.data.first_name} ${res.data.last_name}`)
-                    setIsAuthenticated(true)
+        api
+            .get("/api/v1/me/", {headers: {"Authorization": `Bearer ${ACCESS_TOKEN}`}})
+            .then(res => {
+                setUser(`${res.data.first_name} ${res.data.last_name}`)
                 })
-                .catch(error => {
-                    alert(error)
-                    setIsAuthenticated(false)
-                })
-        } else {
-            setIsAuthenticated(false)
-        }
+            .catch(err => {console.log(err)})
     }
 
     return <header>
-        {isAuthenticated?
-        <nav>
-            <ul className="main-menu">
-                <MenuItem><Link to="/">Головна</Link></MenuItem>
-                <li>dsadsadsa</li>
-                <li>asdsdasd</li>
-                <li>dsadsa</li>
-                <li>asdasdasd</li>
-            </ul>
-        </nav>
-        : <p></p>}
-        <p>Biblio</p>
-        {isAuthenticated?   <p>{user}, <Link to={"logout/"}>Вийти</Link></p>
-                        :   <p><Link to={"login/"}>Ввійти</Link></p>}
+        {isAuthenticated ?
+            <nav>
+                <ul className="main-menu">
+                    <MenuItem><Link to="/">Головна</Link></MenuItem>
+                    <MenuItem><Link to="/create/">Додати книгу</Link></MenuItem>
+                    <li>asdsdasd</li>
+                    <li>dsadsa</li>
+                    <li>asdasdasd</li>
+                </ul>
+            </nav>
+        : <></>
+        }
+        <p className="logo">BIBLIO</p>
+        {isAuthenticated?   <p className="user-name">{user}, <Link to={"logout/"}>Вийти</Link></p>
+                        :   <Link to={"login/"}>Ввійти</Link>}
     </header>
 }
 

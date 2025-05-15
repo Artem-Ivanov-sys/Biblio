@@ -24,7 +24,7 @@ class BooksList(viewsets.GenericViewSet,
                 mixins.DestroyModelMixin,
                 mixins.RetrieveModelMixin):
     serializer_class = BookSerializer
-    permission_classes = [IsStaffOrAdmin]
+    # permission_classes = [IsStaffOrAdmin]
 
     def get_queryset(self):
         return BookModel.objects.all()

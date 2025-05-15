@@ -2,6 +2,10 @@ import { Navigate, createBrowserRouter, RouterProvider } from "react-router-dom"
 import Login from "./pages/Login"
 import Home from "./pages/Main"
 import ProtectedRoute from "./components/ProtectedRoute"
+import CreateBook from "./pages/CreateBook"
+import BooksList from "./pages/BooksList"
+import useRefresh from "./auth/useRefresh"
+import { useEffect } from "react"
 
 function Logout() {
   localStorage.clear()
@@ -14,7 +18,14 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-
+        path: "/",
+        element: <BooksList />
+      },
+      {
+        path: "/create/",
+        element: <ProtectedRoute>
+          <CreateBook />
+        </ProtectedRoute>
       }
     ]
   },
@@ -29,10 +40,12 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+  useEffect(() => {
+    setInterval(useRefresh(), 30*1000)
+  }, [])
+
   return (
-    <ProtectedRoute>
-      <RouterProvider router={router} />
-    </ProtectedRoute>
+    <RouterProvider router={router} />
   )
 }
 

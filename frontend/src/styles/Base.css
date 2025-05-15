@@ -18,6 +18,7 @@ body {
 #root {
     position: relative;
     padding-bottom: 70px;
+    min-height: 100vh;
 }
 
 h2 {

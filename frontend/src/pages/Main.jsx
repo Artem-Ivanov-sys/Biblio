@@ -5,26 +5,12 @@ import Header from "../components/Header"
 import BookItem from "../components/BookItem"
 import "../styles/BooksList.css"
 import Footer from "../components/Footer"
+import { Outlet } from "react-router-dom"
 
 function Home() {
-    const [books, setBooks] = useState({})
-
-    useEffect(() => {
-        getBooks()
-    }, [])
-
-    const getBooks = () => {
-        api
-            .get("/api/v1/biblio/books/")
-            .then(res => setBooks(res.data))
-            .catch(error => alert(error))
-    }
-
     return <div className="main">
         <Header />
-        <div className="books-list">
-            {Array.from(books).map(book => <BookItem key={book.id} book={book} />)}
-        </div>
+        <Outlet />
         <Footer />
     </div>
 }
